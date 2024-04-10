@@ -1,0 +1,22 @@
+{
+    "Arad": {"Timisoara": 118, "Sibiu": 140, "Zerind": 75},
+    "Zerind": {"Arad": 75, "Oradea": 71},
+    "Oradea": {"Zerind": 71, "Sibiu": 151},
+    "Timisoara": {"Arad": 118, "Lugoj": 111},
+    "Lugoj": {"Timisoara": 111, "Mehadia": 70},
+    "Mehadia": {"Lugoj": 70, "Drobeta": 75},
+    "Drobeta": {"Mehadia": 75, "Craiova": 120},
+    "Craiova": {"Drobeta": 120, "Rimnicu Vilcea": 146, "Pitesti": 138, "Slatina": 107},
+    "Sibiu": {"Oradea": 151, "Arad": 140, "Fagaras": 99, "Rimnicu Vilcea": 80, "Alba Iulia": 63, "Brasov": 141},
+    "Rimnicu Vilcea": {"Sibiu": 80, "Craiova": 146, "Pitesti": 97},
+    "Pitesti": {"Rimnicu Vilcea": 97, "Craiova": 138, "Bucharest": 101},
+    "Fagaras": {"Sibiu": 99, "Bucharest": 211},
+    "Bucharest": {"Fagaras": 211, "Pitesti": 101, "Giurgiu": 90, "Ploiesti": 60},
+    "Giurgiu": {"Bucharest": 90},
+    "Alba Iulia": {"Sibiu": 63, "Deva": 70},
+    "Deva": {"Alba Iulia": 70, "Petrosani": 95},
+    "Petrosani": {"Deva": 95},
+    "Ploiesti": {"Bucharest": 60, "Brasov": 106},
+    "Brasov": {"Sibiu": 141, "Ploiesti": 106},
+    "Slatina": {"Craiova": 107, "Pitesti": 108}
+}
