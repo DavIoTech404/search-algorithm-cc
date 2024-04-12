@@ -6,9 +6,9 @@
     "Lugoj": {"Timisoara": 111, "Mehadia": 70, "Lipova": 40},
     "Lipova": {"Arad": 34, "Lugoj": 40},
     "Ineu": {"Arad": 50, "Zerind": 63},
-    "Mehadia": {"Lugoj": 70, "Drobeta": 75},
-    "Drobeta": {"Mehadia": 75, "Craiova": 120, "Slatina": 130},
-    "Craiova": {"Drobeta": 120, "Rimnicu Vilcea": 146, "Pitesti": 138, "Slatina": 107, "Alexandria": 116, "Targu Jiu": 134},
+    "Mehadia": {"Lugoj": 70, "Drobeta-Turnu Severin": 75},
+    "Drobeta-Turnu Severin": {"Mehadia": 75, "Craiova": 120, "Slatina": 130},
+    "Craiova": {"Drobeta-Turnu Severin": 120, "Rimnicu Vilcea": 146, "Pitesti": 138, "Slatina": 107, "Alexandria": 116, "Targu Jiu": 134},
     "Sibiu": {"Oradea": 151, "Arad": 140, "Fagaras": 99, "Rimnicu Vilcea": 80, "Alba Iulia": 63, "Brasov": 141, "Targu Mures": 90, "Medias": 75},
     "Rimnicu Vilcea": {"Sibiu": 80, "Craiova": 146, "Pitesti": 97},
     "Pitesti": {"Rimnicu Vilcea": 97, "Craiova": 138, "Bucharest": 101, "Slatina": 108},
@@ -54,5 +54,6 @@
     "Miercurea Ciuc": {"Brasov": 85, "Bacau": 120, "Targu Mures": 90},
     "Piatra Neamt": {"Bacau": 66},
     "Botosani": {"Iasi": 103, "Suceava": 75, "Roman": 80},
-    "Targu Jiu": {"Craiova": 134}
+    "Targu Jiu": {"Craiova": 134},
+    "Roman": {"Bacau": 75, "Vaslui": 55, "Botosani": 80}
 }
