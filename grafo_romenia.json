@@ -1,5 +1,5 @@
 {
-    "Arad": {"Timisoara": 58, "Sibiu": 304, "Zerind": 55, "Lipova": 32, "Ineu": 50},
+    "Arad": {"Timisoara": 58, "Zerind": 55, "Lipova": 32, "Ineu": 50},
     "Zerind": {"Arad": 55, "Oradea": 60, "Ineu": 63},
     "Oradea": {"Zerind": 60, "Sibiu": 310, "Cluj-Napoca": 147, "Satu Mare": 112},
     "Timisoara": {"Arad": 58, "Lugoj": 111, "Caransebes": 112, "Resita": 83},
@@ -9,7 +9,7 @@
     "Mehadia": {"Lugoj": 112, "Drobeta-Turnu Severin": 48},
     "Drobeta-Turnu Severin": {"Mehadia": 48, "Craiova": 120, "Slatina": 166},
     "Craiova": {"Drobeta-Turnu Severin": 120, "Rimnicu Vilcea": 146, "Pitesti": 138, "Slatina": 107, "Alexandria": 144, "Targu Jiu": 134},
-    "Sibiu": {"Oradea": 310, "Arad": 304, "Fagaras": 99, "Rimnicu Vilcea": 103, "Alba Iulia": 63, "Brasov": 141, "Targu Mures": 90, "Medias": 75},
+    "Sibiu": {"Oradea": 310, "Fagaras": 99, "Rimnicu Vilcea": 103, "Alba Iulia": 63, "Brasov": 141, "Targu Mures": 90, "Medias": 75},
     "Rimnicu Vilcea": {"Sibiu": 103, "Craiova": 146, "Pitesti": 81},
     "Pitesti": {"Rimnicu Vilcea": 81, "Craiova": 138, "Bucharest": 119, "Slatina": 108},
     "Fagaras": {"Sibiu": 99, "Bucharest": 211},
