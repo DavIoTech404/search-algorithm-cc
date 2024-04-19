@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmo de Busca</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-image: url('static/images/image_background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+          }
+        
+        .container { width: 80%; margin: auto; padding: 20px; }
+        
+        .header h1 { 
+        font-family: 'Righteous', cursive;
+        text-align: center; 
+        font-size: 48px;
+        color: #e7e7e7;
+        text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+        margin-bottom: 20px;
+        }
+        
+        .dropdown-container { display: flex; justify-content: space-around; align-items: center; margin-bottom: 10px; }
+        .button-container { text-align: center; }
+        #map { width: 100%; height: 600px; background-color: #f0e4d7; margin-top: 10px; }
+        
+        .btn{
+        font-family: Roboto, sans-serif;
+        font-weight: 0;
+        font-size: 14px;
+        color: #fff;
+        background-color: #264653;
+        padding: 10px 30px;
+        border: 2px solid #0066cc;
+        box-shadow: none;
+        border-radius: 50px;
+        transition : 1000ms;
+        transform: translateY(0);
+        display: inline-block;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+        width: 500px;
+        }
+        
+        .btn:hover{
+        transition : 1000ms;
+        padding: 10px 50px;
+        transform : translateY(-0px);
+        background-color: #fff;
+        color: #264653;
+        border: solid 2px #264653;
+        width: 500px;
+        }
+        
+        .custom-select {
+            display: flex; justify-content: space-around; align-items: center; margin: 20px 20px 20px 20px;
+        }
+        
+        .custom-select select {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 100%;
+            font-size: 18px;
+            padding: 5px 10px 5px 10px;
+            background-color: #FFFFFF;
+            border: 1px solid #C4D1EB;
+            border-radius: 5px;
+            color: #000000;
+            cursor: pointer;
+            outline: none;
+            box-shadow: 3px 3px 2px 0px #E2E2E2;
+        }
+        
+        .custom-select select:focus {
+            background: #F2F2F2;
+            border: 1px solid #5A7EC7;
+            border-radius: 5px;
+        }
+        
+        .custom-select::after {
+            content: "";
+            position: absolute;
+            pointer-events: none;
+            top: 50%;
+            right: 10px;
+            transform: translate(0, -50%);
+            width: 12px;
+            height: 12px;
+            background-color: #000000;
+            clip-path: polygon(8% 17%, 0% 25%, 50% 84%, 100% 25%, 92% 17%, 50% 65%);
+        }    
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Algoritmo de Busca (Davi, Julia, Luís Felipe, Luís Gabriel)</h1>
+    </div>
+    
+    <div class="custom-select">
+        <select id="origin">
+            {% for city in cities %}
+                <option value="{{ city }}">{{ city }}</option>
+            {% endfor %}
+        </select>
+        <select id="destination">
+            {% for city in cities %}
+                <option value="{{ city }}">{{ city }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="button-container">
+        <button class="btn" onclick="fetchRoute()">Traçar Rota</button>
+    </div>
+    
+    <div id="map"></div>
+</div>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlWDf84mw5Xt_UqoawrcmiJPV93D9pP9c&callback=initMap"></script>
+<script>
+    var map, directionsService, directionsRenderer;
+
+    function initMap() {
+        var options = {
+            zoom: 7,
+            center: {lat: 45.9432, lng: 24.9668}
+        }
+        map = new google.maps.Map(document.getElementById('map'), options);
+        directionsService = new google.maps.DirectionsService();
+        directionsRenderer = new google.maps.DirectionsRenderer();
+        directionsRenderer.setMap(map);
+    }
+
+    function fetchRoute() {
+        const origin = document.getElementById('origin').value;
+        const destination = document.getElementById('destination').value;
+
+        fetch('/get_waypoints', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({origin, destination})
+        })
+        .then(response => response.json())
+        .then(data => {
+            calculateAndDisplayRoute(data);
+        });
+    }
+
+    function calculateAndDisplayRoute(waypoints) {
+        var waypts = waypoints.map(location => ({location, stopover: true}));
+        directionsService.route({
+            origin: 'Romania, ' + document.getElementById('origin').value,
+            destination: 'Romania, ' + document.getElementById('destination').value,
+            waypoints: waypts,
+            optimizeWaypoints: true,
+            travelMode: 'DRIVING'
+        }, function(response, status) {
+            if (status === 'OK') {
+                directionsRenderer.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

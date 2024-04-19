@@ -1,23 +1,35 @@
 import json
-
+from flask import Flask, jsonify, render_template, request
 
 # Função para ler o grafo do arquivo JSON
 def ler_grafo(arquivo):
     with open(arquivo, 'r') as file:
-        grafo = json.load(file)
-    return grafo
+        grafo_romenia = json.load(file)
+    return grafo_romenia
 
+# Carregar o grafo do arquivo
+grafo_romenia = ler_grafo('grafo_romenia.json')
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('index.html', cities=list(grafo_romenia.keys()))
 
 # Implementação do algoritmo de Dijkstra para encontrar o caminho mais curto
-def dijkstra(grafo, origem, destino):
+@app.route('/get_waypoints', methods=['POST'])
+def dijkstra():
+
+    origem = request.json['origin']
+    destino = request.json['destination']
 
     # Inicializa as distâncias com infinito e a distância para a origem como 0
-    distancias = {vertice: float('infinity') for vertice in grafo}
+    distancias = {vertice: float('infinity') for vertice in grafo_romenia}
     distancias[origem] = 0
-    anteriores = {vertice: None for vertice in grafo}
-    vertices = grafo.copy()
+    anteriores = {vertice: None for vertice in grafo_romenia}
+    vertices = grafo_romenia.copy()
 
-    # Loop para visitar cada vértice (cidade) no grafo
+    # Loop para visitar cada vértice (cidade) no grafo_romenia
     while vertices:
 
         # Percorre todas as Cidades
@@ -30,7 +42,7 @@ def dijkstra(grafo, origem, destino):
 
         # Filtro
         # Atualiza as distâncias para os vizinhos do vértice atual
-        for vizinho, custo in grafo[vertice_atual].items():
+        for vizinho, custo in grafo_romenia[vertice_atual].items():
             caminho_alternativo = distancias[vertice_atual] + custo
             if caminho_alternativo < distancias[vizinho]:
                 distancias[vizinho] = caminho_alternativo
@@ -49,16 +61,16 @@ def dijkstra(grafo, origem, destino):
         vertice_atual = anteriores[vertice_atual]
     caminho = caminho[::-1]
 
+    print(caminho)
+
     # Retorna o caminho se possível
     if caminho[0] == origem:
-        return caminho
+        if len(caminho) > 2:
+            caminho.pop(0)
+            caminho.pop(-1)
+        return jsonify(['Romania, ' + cidade for cidade in caminho])
     else:
         return "Não é possível chegar ao destino."
 
-
-# Carregar o grafo do arquivo
-grafo_romenia = ler_grafo('grafo_romenia.json')
-
-# Encontrar o caminho mais curto de Arad a Bucharest
-caminho = dijkstra(grafo_romenia, 'Arad', 'Bucharest')
-print(caminho)
+if __name__ == '__main__':
+    app.run(debug=True)
