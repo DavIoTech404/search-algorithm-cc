@@ -2,7 +2,7 @@
 
 ## Caminho Mais Curto em Romênia
 
-Este repositório contém a implementação do algoritmo de Dijkstra para encontrar o caminho mais curto entre cidades na Romênia, especificamente de Arad a Bucharest. Utilizamos um grafo onde os nós representam cidades e as arestas representam as distâncias em quilômetros entre essas cidades.
+Este repositório contém a implementação do algoritmo de Dijkstra para encontrar o caminho mais curto entre cidades na Romênia, especificamente de Arad a Bucharest. Utilizamos um grafo onde os nós representam cidades e as arestas representam as distâncias em quilômetros entre essas cidades. Tem um mapa também.
 
 ## Estrutura do Grafo
 
